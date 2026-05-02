@@ -39,6 +39,17 @@ For 2026, the setup lesson needs to cover four things clearly:
 
 At the end of the lesson, a student should be able to pull a repo, switch branches, run a local command, and explain how their code gets from laptop to review.
 
+## What software setup should mean on this team
+
+For this team, "my setup works" does not just mean VS Code opens.
+
+It means:
+
+- the student can open the robot repo without getting lost,
+- the student can run a local command without guessing,
+- the student can pull changes and understand what Git is telling them,
+- the student can recover from a minor setup problem without freezing immediately.
+
 ## Minimum setup topics to cover
 
 - Install the current WPILib toolchain used by the team.
@@ -54,6 +65,17 @@ At the end of the lesson, a student should be able to pull a repo, switch branch
   - `git pull --rebase`
   - `git push`
 
+## Suggested GitHub workflow to teach
+
+1. Pull the latest default branch.
+2. Create a branch for the task.
+3. Make a small change.
+4. Use `git status` to inspect the worktree.
+5. Commit with a message that says what changed.
+6. Push the branch.
+7. Open a PR.
+8. Respond to review instead of opening a totally new branch.
+
 ## Git concepts to teach
 
 - Working tree vs staged changes vs committed history.
@@ -61,6 +83,14 @@ At the end of the lesson, a student should be able to pull a repo, switch branch
 - Why small commits are easier to review.
 - Why pulling before pushing matters.
 - What a merge conflict is at a basic level.
+
+## Common setup mistakes
+
+- Installing the wrong Java version and trying to debug WPILib before checking that first.
+- Cloning the repo but never opening the real project root.
+- Making changes on the default branch.
+- Running commands blindly without reading their output.
+- Treating Git as magic instead of a record of file state.
 
 ## Debugging prompts
 
@@ -75,6 +105,11 @@ At the end of the lesson, a student should be able to pull a repo, switch branch
 - Add a local note in a scratch file outside the repo if needed, but do not change robot code yet.
 - Run `git status` and explain what it means.
 - Pull the latest changes and explain what changed in your branch state.
+- Locate where you would expect to find:
+  - robot lifecycle code,
+  - subsystem code,
+  - deploy assets,
+  - third-party dependencies.
 
 ## Deliverable / checkoff
 

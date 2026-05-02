@@ -58,6 +58,25 @@ Use this phase to move from lessons into real task flow:
 4. Pair testing on robot with an experienced member when possible.
 5. Review code promptly so the student is not blocked for days.
 
+## Expectations during this phase
+
+Students should not be expected to move like experienced robot debuggers yet.
+
+They should be expected to:
+
+- take initiative on a scoped task,
+- prepare before asking for help,
+- explain what they tried,
+- respond to review,
+- and improve from one task to the next.
+
+Mentors should be expected to:
+
+- keep task scope realistic,
+- review promptly,
+- prevent low-quality unreviewed code from slipping through,
+- pair on robot-side testing when needed.
+
 ## 3rd robot expectations
 
 The goal is for newer members to write as much real code as possible, but not alone and not without quality control.
@@ -116,3 +135,7 @@ By this phase, students should have at least basic familiarity with:
 ## Exit criteria
 
 By the end of this phase, a student should be ready to be treated as a software member for scoped work. That does not mean they are ready to solo every DP or lead every robot test. It means they can join the actual workflow without being carried through every step.
+
+## Task for this lesson
+
+Follow [Lesson 07-08 Task: Real Contribution Transition](../tasks/lesson-07-08-transition-task/README.md).

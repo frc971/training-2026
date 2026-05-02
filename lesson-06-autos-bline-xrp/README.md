@@ -39,6 +39,17 @@ Key ideas to teach:
 - path data comes from deployed assets,
 - the auto command is assembled from path-following commands.
 
+## How to read autonomous code
+
+Autonomous code is easier to understand if you separate it into layers:
+
+- selection layer: what auto did the driver choose?
+- data layer: what paths or assets define it?
+- command-building layer: how is the final sequence assembled?
+- subsystem behavior layer: what do those commands actually make the robot do?
+
+Students often jump straight from the chooser name to "why did the robot move wrong?" and skip the middle layers. This lesson should break that habit.
+
 Then connect this to B-Line:
 
 - B-Line is part of the path following flow used here.
@@ -55,6 +66,12 @@ Possible student tasks:
 - create a small variation of an existing auto,
 - inspect and explain why mirroring is or is not allowed for a routine,
 - verify the autonomous start pose logic.
+
+## Why this lesson matters for real team work
+
+Auto bugs are often integration bugs. The path file might be fine while the start pose, mirroring, event trigger, or subsystem state is wrong.
+
+This makes autos a good training area because students have to learn to isolate the layer that is actually failing.
 
 ## Commands note
 
@@ -85,8 +102,13 @@ Commands can be explained here only as much as needed to understand:
 - Student can explain the flow from auto chooser selection to autonomous command execution.
 - Student completes one small auto-related task or variation.
 - Student can describe what part of the stack they changed and what part they left to the library.
+- Student can name at least one likely failure point besides "the path is bad."
 
 ## Before next lesson
 
 - Be ready to transition from training tasks into real team work.
 - Think about what skills still feel weak: code reading, Java, debugging, sim, deploy, or review turnaround.
+
+## Task for this lesson
+
+Follow [Lesson 06 Task: Auto Routine Investigation or Variant](../tasks/lesson-06-autos-bline-task/README.md).

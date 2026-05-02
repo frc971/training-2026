@@ -46,6 +46,27 @@ This is a good place to remind students that not all code in a robot repo is the
 - some is generated and should be treated carefully,
 - some is simulation support.
 
+## How to think about drivetrain code
+
+For most new members, drivetrain code feels intimidating because it mixes:
+
+- geometry,
+- controls,
+- vendor abstractions,
+- field-relative behavior,
+- simulation,
+- and sometimes autos/path following.
+
+The goal of this lesson is not to make every student a drivetrain expert. The goal is to make drivetrain code readable enough that students can take small tasks and debug specific behavior without bouncing off the file instantly.
+
+## What to focus on first
+
+- where controller input enters,
+- how it is transformed,
+- what request object gets built,
+- where that request is finally applied,
+- what parts are team-authored behavior versus vendor interface code.
+
 ## Commands note
 
 If command-based structure needs to be introduced here to support the auto lesson, keep it concrete. Focus on what a default command is, what triggers do, and how a subsystem receives requests. Do not turn this into an abstract command framework lecture.
@@ -75,7 +96,12 @@ Drivetrain bugs are often not only code bugs. Students should know that module o
 - Student can explain how joystick input reaches the drivetrain.
 - Student can describe the role of `CommandSwerveDrivetrain` and `TunerConstants`.
 - Student can point to where sim support for drivetrain behavior lives.
+- Student can describe one reason drivetrain code is harder to debug than a simple single-motor subsystem.
 
 ## Before next lesson
 
 - Be ready to think about autos as a combination of paths, commands, and field-aware behavior.
+
+## Task for this lesson
+
+Follow [Lesson 05 Task: Drivetrain Reading + Explanation](../tasks/lesson-05-drivetrain-reading-task/README.md).

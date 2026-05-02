@@ -63,6 +63,36 @@ The exact task can vary, but the structure of the work should stay the same:
 4. Test or simulate the change.
 5. Explain how you know it worked.
 
+## Why this lesson exists
+
+This lesson is directly targeting a team problem: newer members often can complete a Java eval but still cannot turn that into useful progress on real robot code.
+
+This task is meant to force the missing skills:
+
+- reading older code,
+- choosing the right edit location,
+- testing behavior,
+- and explaining implementation choices.
+
+That matters more here than perfect code style on the first try.
+
+## Good task shapes
+
+Examples that fit this lesson well:
+
+- add or adjust a readiness threshold,
+- add a small log signal around a state decision,
+- prevent an action from running under a simple unsafe condition,
+- clean up duplicated conditional logic into a helper,
+- add a small button-driven behavior that follows an existing pattern.
+
+Examples that do not fit:
+
+- rewriting the superstructure state model,
+- changing many subsystems at once,
+- tuning constants without understanding the system,
+- adding behavior with no test plan.
+
 ## What mentors should watch for
 
 - Does the student search before asking?
@@ -93,8 +123,13 @@ The exact task can vary, but the structure of the work should stay the same:
 - Student can explain the existing behavior before describing their edit.
 - Student completes one scoped logic task with support.
 - Student can point to evidence that the behavior changed as intended.
+- Student can explain why the chosen edit point was the right layer.
 
 ## Before next lesson
 
 - Review drivetrain-related classes so the names and structure are familiar.
 - Be ready to compare mechanism logic with drivetrain architecture.
+
+## Task for this lesson
+
+Follow [Lesson 04 Task: Superstructure Logic Change](../tasks/lesson-04-superstructure-logic-task/README.md).

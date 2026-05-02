@@ -4,12 +4,22 @@ This repo is the lesson set for new software members in 2026. Each lesson lives 
 
 The main reference codebase is [971-second-robot-2026](../971-second-robot-2026/README.md). When a concept is easier to show on a different robot, the lesson calls that out explicitly.
 
+This is intentionally different from [training-2025](../training-2025/README.md), where the real training material lived in GitHub Wiki and the repo mostly pointed outward. For 2026, the lessons live in the repo so they can be reviewed, improved, and used without hunting for external wiki pages.
+
 ## Program frame
 
 - Audience: new software members who passed the Java eval but still need practice applying Java, reading older code, debugging, and working inside our actual robot structure.
 - Format: 1-2 hour Saturday lessons at the lab.
 - Deadline: lesson track should be ready to run by May 23.
 - Goal: by the end of this sequence, a member should be able to take a scoped software task, read the docs and nearby code, make progress with support, and test or simulate their change without stalling immediately.
+
+## How to use this repo
+
+- Read the lesson page before starting the weekly task.
+- Follow the repo links inside the lesson while reading code.
+- Do the exercise or task at the end of the page.
+- Test in sim when possible before asking for review.
+- Submit work through normal branch and PR flow once a mentor says the task is ready for repo work.
 
 ## Expectations for new members
 
@@ -25,6 +35,13 @@ The main reference codebase is [971-second-robot-2026](../971-second-robot-2026/
 - At minimum they should understand what CAN is, what hardware is on the bus, and the rough path from code to motor behavior.
 - Later in training, they also need exposure to Driver Station, deploy flow, and how code is tested on a real robot.
 
+## Design principles for these lessons
+
+- Teach from our real code, not a generic WPILib example, whenever possible.
+- Explain why a pattern exists before asking students to use it.
+- Make tasks feel like actual newcomer work on the team.
+- Bias toward debugging habits and code reading, not just feature completion.
+
 ## Lessons
 
 1. [Lesson 01: Software Intro / Tooling Setup / Git + GitHub](lesson-01-intro-tooling-git/README.md)
@@ -34,6 +51,12 @@ The main reference codebase is [971-second-robot-2026](../971-second-robot-2026/
 5. [Lesson 05: Drivetrain Introduction](lesson-05-drivetrain-intro/README.md)
 6. [Lesson 06: Autos / B-Line / XRP Task](lesson-06-autos-bline-xrp/README.md)
 7. [Lesson 07-08: Transition to Software Member](lesson-07-08-transition-to-software-member/README.md)
+
+## Tasks
+
+- Task index: [tasks/README.md](tasks/README.md)
+- Java eval copy from 2025: [tasks/java-evaluation/README.md](tasks/java-evaluation/README.md)
+- Every lesson after intro/tooling now has a corresponding task page in `tasks/`.
 
 ## Suggested pacing
 
