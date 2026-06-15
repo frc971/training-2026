@@ -4,7 +4,7 @@ This repo is the lesson set for new software members in 2026. Each lesson lives 
 
 The main reference codebase is [971-second-robot-2026](../971-second-robot-2026/README.md). When a concept is easier to show on a different robot, the lesson calls that out explicitly.
 
-# Training material is also located in the [wiki](https://github.com/frc971/training-2025/wiki)
+# Training material is also located in the [wiki](https://github.com/frc971/training-2026/wiki)
 
 ## Program frame
 
@@ -34,13 +34,6 @@ The main reference codebase is [971-second-robot-2026](../971-second-robot-2026/
 - New software members should also get basic mech/elec context.
 - At minimum they should understand what CAN is, what hardware is on the bus, and the rough path from code to motor behavior.
 - Later in training, they also need exposure to Driver Station, deploy flow, and how code is tested on a real robot.
-
-## Design principles for these lessons
-
-- Teach from our real code, not a generic WPILib example, whenever possible.
-- Explain why a pattern exists before asking students to use it.
-- Make tasks feel like actual newcomer work on the team.
-- Bias toward debugging habits and code reading, not just feature completion.
 
 ## Lessons
 
