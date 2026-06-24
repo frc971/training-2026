@@ -2,13 +2,11 @@
 
 ## Purpose
 
-Get every member into a usable development environment before deeper robot lessons start. This includes Java/WPILib setup, editor setup, repo setup, and the minimum Git workflow needed to work on team code without guessing.
+Get every member into a usable development environment before deeper robot lessons start. 
 
 ## Prerequisites
 
-- Complete the Java eval before coming to this lesson.
 - Have a laptop with permission to install tools.
-- Have a GitHub account.
 
 ## Time box
 
@@ -16,10 +14,7 @@ Get every member into a usable development environment before deeper robot lesso
 
 ## Learning goals
 
-- Understand what tools are required to work on our Java WPILib robot repos.
-- Clone a repo, open it, and run basic Gradle or WPILib tasks.
-- Understand the Git flow well enough to make a branch, commit, pull, and open a PR later.
-- Know where to go when setup breaks.
+- Clone the repo and open it!
 
 ## In our codebase
 
@@ -38,7 +33,7 @@ It's highly suggested that you [install](https://learn.microsoft.com/en-us/windo
 
 ### 1. Create a GitHub account
 
-If you don't have one, create one.
+If you don't have one, create one. Choose an username that you would be comfortable with putting on your college or job applications.
 
 ## SSH Access to GitHub
 
@@ -118,7 +113,7 @@ Follow the instructions here:
 
 ## Download the Training Repository
 
-### 7. `cd` to the location where you want the `training-2025` folder
+### 7. `cd` to the location where you want the `training-2026` folder
 
 #### Windows users only:
 
@@ -141,13 +136,13 @@ to see what home directories are available and `cd` into it.
 Once you are sure that you are in the location where you want to source, do:
 
 ```
-ln -sf $PWD/training-2025 ~/training-2025
+ln -sf $PWD/training-2026 ~/training-2026
 ```
 
 ### 8. Clone the repository
 
 ```
-git clone git@github.com:frc971/training-2025.git
+git clone git@github.com:frc971/training-2026.git
 ```
 
 If you don't have git, download it [here](https://git-scm.com/downloads).
@@ -158,7 +153,7 @@ If you don't have git, download it [here](https://git-scm.com/downloads).
 
 - Go to **File -> Open Folder**
 - Navigate to the directory where you did `git clone`
-- Go inside `training-2025` and click **Open**
+- Go inside `training-2026` and click **Open**
 
 ## Final Step
 

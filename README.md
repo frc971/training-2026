@@ -28,13 +28,6 @@ The main reference codebase is [971-second-robot-2026](../971-second-robot-2026/
 - At minimum they should understand what CAN is, what hardware is on the bus, and the rough path from code to motor behavior.
 - Later in training, they also need exposure to Driver Station, deploy flow, and how code is tested on a real robot.
 
-## Design principles for these lessons
-
-- Teach from our real code, not a generic WPILib example, whenever possible.
-- Explain why a pattern exists before asking students to use it.
-- Make tasks feel like actual newcomer work on the team.
-- Bias toward debugging habits and code reading, not just feature completion.
-
 ## Lessons
 
 1. [Lesson 01: Software Intro / Tooling Setup / Git + GitHub](lesson-01-intro-tooling-git/README.md)
