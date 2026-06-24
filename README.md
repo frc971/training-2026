@@ -4,14 +4,7 @@ This repo is the lesson set for new software members in 2026. Each lesson lives 
 
 The main reference codebase is [971-second-robot-2026](../971-second-robot-2026/README.md). When a concept is easier to show on a different robot, the lesson calls that out explicitly.
 
-# Training material is also located in the [wiki](https://github.com/frc971/training-2025/wiki)
-
-## Program frame
-
-- Audience: new software members who passed the Java eval but still need practice applying Java, reading older code, debugging, and working inside our actual robot structure.
-- Format: 1-2 hour Saturday lessons at the lab.
-- Deadline: lesson track should be ready to run by May 23.
-- Goal: by the end of this sequence, a member should be able to take a scoped software task, read the docs and nearby code, make progress with support, and test or simulate their change without stalling immediately.
+# Training material is also located in the [wiki](https://github.com/frc971/training-2026/wiki)
 
 ## How to use this repo
 
