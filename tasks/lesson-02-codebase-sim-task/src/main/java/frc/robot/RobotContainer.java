@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import frc.robot.subsystems.Pivot;
 
@@ -22,7 +22,9 @@ public class RobotContainer {
 
   private void configureBindings() {
     // TODO: Bind button 1 to pivot.setTargetAngleDegrees(35.0)
+    joystick.button(1).onTrue(pivot.runOnce(() -> pivot.setTargetAngleDegrees(35.0)));
     // TODO: Bind button 2 to pivot.setTargetAngleDegrees(0.0)
+    joystick.button(2).onTrue(pivot.runOnce(() -> pivot.setTargetAngleDegrees(0.0)));
   }
 
   public Command getAutonomousCommand() {

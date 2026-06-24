@@ -30,6 +30,9 @@ public class Pivot extends SubsystemBase {
   @Override
   public void periodic() {
     // TODO: Publish current angle, target angle, and atTarget() to SmartDashboard
+    SmartDashboard.putNumber("Pivot Current Angle", currentAngleDegrees);
+    SmartDashboard.putNumber("Pivot Target Angle", targetAngleDegrees);
+    SmartDashboard.putBoolean("Pivot At Target", atTarget());
   }
 
   @Override
