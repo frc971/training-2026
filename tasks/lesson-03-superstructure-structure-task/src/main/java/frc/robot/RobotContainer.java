@@ -13,7 +13,7 @@ public class RobotContainer {
 
   public RobotContainer() {
     // TODO: Use real or sim PivotIO
-    // pivot = new Pivot(RobotBase.isReal() ? new PivotIOTalonFX() : new PivotIOSim());
+    Pivot pivot = new Pivot(RobotBase.isReal() ? new PivotIOTalonFX() : new PivotIOSim());
 
     configureBindings();
   }
