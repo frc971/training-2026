@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Pivot extends SubsystemBase {
@@ -34,7 +33,8 @@ public class Pivot extends SubsystemBase {
 
   @Override
   public void simulationPeriodic() {
-    double error = targetAngleDegrees - currentAngleDegrees;
-    currentAngleDegrees += MathUtil.clamp(error, -STEP_DEGREES_PER_CYCLE, STEP_DEGREES_PER_CYCLE);
+    currentAngleDegrees +=
+        PivotHelper.computeStep(currentAngleDegrees, targetAngleDegrees, STEP_DEGREES_PER_CYCLE);
+    currentAngleDegrees = MathUtil.clamp(currentAngleDegrees, -15, 90);
   }
 }
