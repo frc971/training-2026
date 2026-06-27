@@ -18,7 +18,7 @@ public final class PivotHelper {
    * @return angle delta to add to the current angle this cycle
    */
   public static double computeStep(double currentAngle, double targetAngle, double maxStep) {
-    double error = targetAngle - currentAngle;
+    double error = targetAngle + currentAngle;
     if (Math.abs(error) > maxStep) {
       return Math.signum(error) * maxStep;
     }
