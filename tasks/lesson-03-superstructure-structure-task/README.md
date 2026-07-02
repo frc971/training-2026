@@ -1,55 +1,162 @@
-# Lesson 03 Task: Superstructure Structure Trace
+# Lesson 03 Task: Building a Turret Subsystem
 
-# IMPORTANT: DO NOT ATTEMPT THIS TASK WITHOUT READING [LESSON 03](../../lesson-03-superstructure-pid-ctre/README.md)
+# IMPORTANT: DO NOT ATTEMPT THIS TASK WITHOUT READING [LESSON 03](https://github.com/frc971/training-2026/tree/main/lesson-03-superstructure-pid-ctre)
 
-This task includes a starter project built to teach the 2026-style shared abstraction pattern, not just the older one-subsystem-one-IO-interface pattern.
+In the real robot codebase, most mechanisms are built using a reusable motor framework instead of directly controlling TalonFXs inside every subsystem.
 
-## Starter Project Focus
+The framework looks roughly like this:
 
-This mini repo uses a simplified reusable motor abstraction:
+```text
+MotorConfig
+    ↓
+MotorIO
+   /    \
+MotorSim MotorTalonFX
+    ↓       ↓
+MotorSubsystem
+    ↓
+AngularSubsystem and LinearSubsystem
+    ↓
+Your Subsystem
+```
 
-- `src/main/java/frc/robot/lib/motor/MotorIO.java`
-- `src/main/java/frc/robot/lib/motor/MotorSubsystem.java`
-- `src/main/java/frc/robot/subsystems/pivot/Pivot.java`
-- `src/main/java/frc/robot/subsystems/pivot/PivotIOSim.java`
-- `src/main/java/frc/robot/subsystems/pivot/PivotIOTalonFX.java`
-- `src/main/java/frc/robot/RobotContainer.java`
+The goal of this task is to become familiar with that framework by creating a turret subsystem.
 
-It is intentionally smaller than the real 2026 second robot, but the layers line up with the same ideas.
+---
 
-## Your Mission
+## What You Will Learn
 
-1. Read the project and explain what each layer does.
-2. In `RobotContainer.java`, instantiate the `Pivot` with:
-   - `PivotIOTalonFX` on real hardware
-   - `PivotIOSim` in simulation
-3. Bind:
-   - button 1 to move the pivot toward deployed
-   - button 2 to move the pivot toward stowed
-   - releasing either button should stop the pivot
-4. Complete the TODOs in:
-   - `PivotIOSim.java`
-   - `PivotIOTalonFX.java`
+By completing this task, you will practice:
 
-## Test Your Code
+* Reading a real robot subsystem structure
+* Understanding the purpose of `MotorConfig`
+* Configuring a motor using the superstructure framework
+* Overriding subsystem behavior
+* Implementing software limits
+* Testing behavior in simulation
 
-Before asking for checkoff:
+---
 
-- run simulation
-- hold button 1 and confirm the pivot angle increases
-- hold button 2 and confirm the pivot angle decreases
-- explain where simulated state is updated and where real hardware state would come from
+## Starter Files
+
+You should primarily work in:
+
+```text
+src/main/java/frc/robot/subsystems/superstructure/Turret.java
+```
+
+The starter file contains several TODOs.
+
+---
+
+## Background
+
+A turret rotates around a vertical axis.
+
+Unlike some mechanisms, a turret cannot rotate forever because wires, tubing, and other hardware can become tangled.
+
+Because of this, we need software limits.
+
+For this exercise, the turret may only rotate between:
+
+```java
+public static final Angle LOWER_LIMIT = Degrees.of(-95);
+public static final Angle UPPER_LIMIT = Degrees.of(95);
+```
+
+If code requests an angle outside this range, the turret should automatically clamp the request to the nearest valid position.
+
+---
+
+## Part 1: Configure the Motor
+
+Inside `getMotorConfig()` complete the TODOs.
+
+You will need to configure:
+
+* Subsystem name
+* CAN ID
+* Logging units
+* Motion Magic settings
+* Gear ratio
+
+Read the comments carefully.
+
+---
+
+## Part 2: Override setPosition()
+
+Create a custom implementation of:
+
+```java
+@Override
+public void setPosition(Angle goalPosition)
+```
+
+and normalize the goal angle to be between -180 and 180 degrees. Then clamp the goal angle to the physical limits of the turret whose values were mentioned above (-95 degrees and 95 degrees).
+
+---
+
+## Testing
+
+Create temporary button bindings in `RobotContainer`.
+
+### Button 1
+
+Move turret to:
+
+```java
+Degrees.of(45)
+```
+
+### Button 2
+
+Move turret to:
+
+```java
+Degrees.of(200)
+```
+
+---
+
+## Verify
+
+Before requesting checkoff:
+
+* Run simulation
+* Confirm the turret moves normally to 45°
+* Confirm a 200° request gets clamped
+* Confirm logged goals never exceed the turret limits
+
+---
 
 ## Why This Matters
 
-- This is the same layering idea you need for the 2026 superstructure codebase.
-- If you do not understand which file owns logic versus IO versus configuration, you will edit the wrong place in the real repo.
+Most robot mechanisms are not just motors.
+
+Subsystems frequently add:
+
+* software limits
+* feedforward
+* safety checks
+* special control modes
+
+This task demonstrates how teams build subsystem-specific functionality on top of a reusable motor framework instead of rewriting motor control code for every mechanism.
+
+---
 
 ## Wrap-Up
 
 Once your code works:
 
-1. Create a branch.
-2. Commit clearly.
-3. Ask for review.
-4. Be ready to compare this starter structure against the real `MotorIO` and `MotorSubsystem` pattern in `971-second-robot-2026`.
+1. **Create a branch for your work**
+2. Commit with a clear commit message
+3. Open a pull request
+4. Ask a training lead or instructor for review
+
+Be prepared to explain:
+
+* what `MotorConfig` does
+* why `MotorIO` exists
+* why `setPosition()` was overridden
+* how the turret limits work
