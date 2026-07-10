@@ -9,25 +9,41 @@ import frc.robot.lib.superstructure.*;
 public class Turret extends AngularSubsystem {
 
   public Turret() {
-    // TODO: Fill in constructor
+    super(getMotorConfig());
   }
 
   public static MotorConfig getMotorConfig() {
     TalonFXConfiguration tc = new TalonFXConfiguration();
 
-    // TODO: Fill in Motion Magic values, PID and feedforward gains
+    
+    tc.Slot0.kS = 0;
+    tc.Slot0.kV = 0;
+    tc.Slot0.kA = 0;
+    tc.Slot0.kG = 0;
 
-    // TODO: For PID, let kP = 100, kI = 0, and kD = 0. Let feedforward
-    // gains = 0
+    
+    tc.Slot0.kP = 100.0;
+    tc.Slot0.kI = 0.0;
+    tc.Slot0.kD = 0.0;
 
-    // TODO: For motion magic let cruise velocity = 10, acceleration = 10
+    tc.MotionMagic.MotionMagicCruiseVelocity = 10;
+    tc.MotionMagic.MotionMagicAcceleration = 10;
+    
 
   }
 
   @Override
   public void setPosition(Angle goalPosition) {
-    // TODO: Normalize the goal position to be within the range of -180 to 180 degrees and clamp
-    // the goal position to the physical limits of the turret.
+     double angle = goalPosition.in(Degrees);
+    if (angle > 180) {
+        angle -= 360;
+    }
+    if (angle > 95) {
+        angle = 95;
+    }
+    if (angle < -95) {
+        angle = -95;
+    }
     super.setPositionVoltage();
   }
 }
