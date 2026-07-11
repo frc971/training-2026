@@ -39,7 +39,7 @@ public class Turret extends AngularSubsystem {
     tc.MotionMagic.MotionMagicJerk = 0.0;
 
     return MotorConfig.builder()
-     .NAME("Ground Pivot")
+     .NAME("Turret")
      .ID(14)
      .BUS(new CANBus("rio"))
      .LOG_UNIT(Degrees)
