@@ -12,8 +12,8 @@ import edu.wpi.first.math.MathUtil;
 
 
 public class Turret extends AngularSubsystem {
-    public static final Angle LOWER_LIMIT = Degrees.of(-180);
-    public static final Angle UPPER_LIMIT = Degrees.of(180);
+    public static final Angle LOWER_LIMIT = Degrees.of(-95);
+    public static final Angle UPPER_LIMIT = Degrees.of(95);
 
   public Turret() {
     // TODO: Fill in constructor
@@ -47,6 +47,8 @@ public class Turret extends AngularSubsystem {
      .FOC(false)
      .build();
 
+     
+
    
 
   }
@@ -58,5 +60,7 @@ public class Turret extends AngularSubsystem {
         MathUtil.clamp(normalizedGoal.in(Degrees), LOWER_LIMIT.in(Degrees), UPPER_LIMIT.in(Degrees)));
 
     super.setPositionVoltage(clampedGoal);
+
+    System.out.println("Goal Degree: " + normalizedGoal.in(Degrees));
   }
 }
