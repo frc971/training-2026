@@ -20,8 +20,7 @@ public class Pathing {
   private final EndEffector endEffector;
   private final Elevator elevator;
 
-  @AutoLogOutput
-  private Goal goal = Goal.NOT_ACTIVE;
+  @AutoLogOutput private Goal goal = Goal.NOT_ACTIVE;
 
   public Pathing(Arm arm, EndEffector endEffector, Elevator elevator) {
     this.arm = arm;
@@ -45,23 +44,54 @@ public class Pathing {
     // 2. Only run the end effector at SCORE_END_EFFECTOR_VOLTS after the arm is ready.
     // 3. Only move the elevator to SCORE_ELEVATOR_METERS after the end effector is ready.
     // 4. Otherwise keep mechanisms that are not allowed to move yet stopped or at zero.
+    if (goal == Goal.ACTIVE) {
+      arm.setPosition(SCORE_ARM_DEGREES);
+      if (isArmReadyForEndEffector()) {
+        endEffector.setVoltage(SCORE_END_EFFECTOR_VOLTS);
+      } else {
+        endEffector.stop();
+      }
+      if (isEndEffectorReadyForElevator()) {
+        elevator.setHeight(SCORE_ELEVATOR_METERS);
+      } else {
+        elevator.stop();
+      }
+    } else {
+      arm.stop();
+      elevator.stop();
+      
+    }
     logState();
   }
 
   public boolean isArmReadyForEndEffector() {
     // TODO: Return true when the arm is within ARM_TOLERANCE_DEGREES of SCORE_ARM_DEGREES.
+    if ((arm.getCurrentDegrees() < SCORE_ARM_DEGREES + ARM_TOLERANCE_DEGREES)
+        && ((SCORE_ARM_DEGREES - ARM_TOLERANCE_DEGREES) < arm.getCurrentDegrees())) {
+      return true;
+    }
     return false;
   }
 
   public boolean isEndEffectorReadyForElevator() {
     // TODO: Return true only after the arm is ready and the end effector is within
     // END_EFFECTOR_TOLERANCE_VOLTS of SCORE_END_EFFECTOR_VOLTS.
+    if ((endEffector.getAppliedVolts() < SCORE_END_EFFECTOR_VOLTS + END_EFFECTOR_TOLERANCE_VOLTS)
+        && (endEffector.getAppliedVolts()
+            > SCORE_END_EFFECTOR_VOLTS - END_EFFECTOR_TOLERANCE_VOLTS)) {
+      return true;
+    }
     return false;
   }
 
   public boolean isReadyToScore() {
     // TODO: Return true when the arm, end effector, and elevator have all reached their targets.
     // Use ELEVATOR_TOLERANCE_METERS for the elevator check.
+    if (isArmReadyForEndEffector()
+        && isEndEffectorReadyForElevator()
+        && (elevator.getTargetMeters() - elevator.getCurrentMeters() < ELEVATOR_TOLERANCE_METERS)) {
+      return true;
+    }
     return false;
   }
 
@@ -72,6 +102,9 @@ public class Pathing {
   }
 
   private void logState() {
-    // Log goal, arm ready for ee, arm ready for elevator, and ready to score here 
+    // Log goal, arm ready for ee, arm ready for elevator, and ready to score here
+    Logger.recordOutput("Pathing/ArmReady", isArmReadyForEndEffector());
+    Logger.recordOutput("Pathing/EndEffectorReady", isEndEffectorReadyForElevator());
+    Logger.recordOutput("Pathing/ReadToScore", isReadyToScore());
   }
 }
