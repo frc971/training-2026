@@ -34,7 +34,7 @@ public class Pivot extends SubsystemBase {
     // TODO: Publish current angle, target angle, and atTarget() to SmartDashboard
     SmartDashboard.putNumber("current angle", currentAngleDegrees);
     SmartDashboard.putNumber("target angle", targetAngleDegrees);
-    SmartDashboard.putBoolean("atTarget", atTarget());
+    SmartDashboard.putBoolean("atTarget()", atTarget());
     
   }
 
