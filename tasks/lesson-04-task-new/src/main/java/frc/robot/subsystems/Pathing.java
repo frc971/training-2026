@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
 
+
 public class Pathing {
   public enum Goal {
     ACTIVE,
@@ -39,6 +40,42 @@ public class Pathing {
 
   public void periodic() {
     // TODO: Write this periodic method.
+    if (goal == Goal.NOT_ACTIVE){
+
+      stopAll();
+      logState();
+      return;
+
+    }else if (goal == Goal.ACTIVE){
+      arm.setPosition(SCORE_ARM_DEGREES);
+    }
+
+    if (isArmReadyForEndEffector()){
+
+      endEffector.setVoltage(SCORE_END_EFFECTOR_VOLTS);
+
+
+    }else{
+      endEffector.stop();
+    }
+    
+    if (isEndEffectorReadyForElevator()){
+
+      //move the elevator to score_elevator_meters
+      //elevator is called elevator
+
+      elevator.setHeight(SCORE_ELEVATOR_METERS);
+
+
+
+
+
+
+    }else{
+
+      elevator.stop();
+    }
+  
     // If the goal is NOT_ACTIVE, stop all three mechanisms and return.
     // If the goal is ACTIVE:
     // 1. Move the arm to SCORE_ARM_DEGREES.
@@ -49,20 +86,35 @@ public class Pathing {
   }
 
   public boolean isArmReadyForEndEffector() {
+
+    return Math.abs(arm.getCurrentDegrees() - SCORE_ARM_DEGREES) <= ARM_TOLERANCE_DEGREES;
+    
+
+
+
+   
     // TODO: Return true when the arm is within ARM_TOLERANCE_DEGREES of SCORE_ARM_DEGREES.
-    return false;
+    
   }
 
   public boolean isEndEffectorReadyForElevator() {
+
+    return (Math.abs(endEffector.getAppliedVolts() - SCORE_END_EFFECTOR_VOLTS) <= END_EFFECTOR_TOLERANCE_VOLTS) && isArmReadyForEndEffector();
+
+
     // TODO: Return true only after the arm is ready and the end effector is within
     // END_EFFECTOR_TOLERANCE_VOLTS of SCORE_END_EFFECTOR_VOLTS.
-    return false;
+    
   }
 
   public boolean isReadyToScore() {
+
+    return (isEndEffectorReadyForElevator() && (Math.abs(elevator.getCurrentMeters() - SCORE_ELEVATOR_METERS) <= ELEVATOR_TOLERANCE_METERS));
+
+    
     // TODO: Return true when the arm, end effector, and elevator have all reached their targets.
     // Use ELEVATOR_TOLERANCE_METERS for the elevator check.
-    return false;
+    
   }
 
   private void stopAll() {
@@ -73,5 +125,14 @@ public class Pathing {
 
   private void logState() {
     // Log goal, arm ready for ee, arm ready for elevator, and ready to score here 
+    
+    
+    //example     Logger.recordOutput("Superstructure/Goal", getGoal().name());
+
+    Logger.recordOutput("goal", getGoal());
+    Logger.recordOutput("arm ready for ee", isArmReadyForEndEffector());
+    Logger.recordOutput("ee ready for elevator", isEndEffectorReadyForElevator());
+    Logger.recordOutput("ready to score", isReadyToScore());
+
   }
 }
