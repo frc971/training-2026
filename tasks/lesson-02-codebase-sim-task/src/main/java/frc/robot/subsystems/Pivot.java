@@ -40,6 +40,7 @@ public class Pivot extends SubsystemBase {
   public void simulationPeriodic() {
     currentAngleDegrees +=
         PivotHelper.computeStep(currentAngleDegrees, targetAngleDegrees, STEP_DEGREES_PER_CYCLE);
-    currentAngleDegrees = MathUtil.clamp(currentAngleDegrees, -15, 35);
-  }
+    currentAngleDegrees = MathUtil.clamp(currentAngleDegrees, -15, 15);
+    
+  } 
 }
