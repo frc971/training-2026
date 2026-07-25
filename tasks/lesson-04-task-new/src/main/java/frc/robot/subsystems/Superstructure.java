@@ -43,10 +43,9 @@ public class Superstructure {
   private void updateKeybinds() {
     pathingToggle.periodic();
 
-
-    if (pathingToggle.toggled()){
+    if (pathingToggle.toggled()) {
       setGoal(Goal.ACTIVE);
-    }else{
+    } else {
       setGoal(Goal.NOT_ACTIVE);
     }
 
