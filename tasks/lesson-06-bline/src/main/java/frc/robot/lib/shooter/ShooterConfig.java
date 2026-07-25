@@ -1,0 +1,75 @@
+package frc.robot.lib.shooter;
+
+import static edu.wpi.first.units.Units.*;
+
+import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.units.measure.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.experimental.Accessors;
+
+@Accessors(fluent = true) // this removes "get" prefix from getters
+@Builder(toBuilder = true)
+@Getter
+public class ShooterConfig {
+  @Builder.Default private String name = "Shooter";
+  @Builder.Default private Constraints CONSTRAINTS = Constraints.builder().build();
+  @Builder.Default private Threshold THRESHOLD = Threshold.builder().build();
+  @Builder.Default private Physics PHYSICS = Physics.builder().build();
+
+  @Builder.Default
+  private PhysicalConversion PHYSICAL_CONVERSION = PhysicalConversion.builder().build();
+
+  @Builder
+  @Getter
+  public static class Physics {
+    @Builder.Default private double GRAVITY = 9.807;
+    @Builder.Default private Angle VELOCITY_ANGLE_AT_TARGET = Degrees.of(-60.0);
+    @Builder.Default private ShotTable SHUTTLE_TABLE = new ShotTable();
+    @Builder.Default private ShotTable SHOT_TABLE = new ShotTable();
+    @Builder.Default private ExitSpeedTable EXIT_SPEED_TABLE = new ExitSpeedTable();
+
+    public AngularVelocity calcAngularVel(LinearVelocity speed) {
+      return EXIT_SPEED_TABLE.calcAngularVel(speed);
+    }
+  }
+
+  @Getter
+  @Builder
+  public static class Constraints {
+    // low-priority constraints
+    @Builder.Default private Distance MIN_SHOT_DISTANCE = Meters.of(0.01);
+    @Builder.Default private Distance MAX_SHOT_DISTANCE = Meters.of(1000);
+
+    // high-priority constraints
+    @Builder.Default private AngularVelocity MIN_FLYWHEEL_SPEED = RotationsPerSecond.of(0);
+    @Builder.Default private AngularVelocity MAX_FLYWHEEL_SPEED = RotationsPerSecond.of(1000);
+    @Builder.Default private Angle MIN_HOOD_ANGLE = Degrees.of(40);
+    @Builder.Default private Angle MAX_HOOD_ANGLE = Degrees.of(78);
+  }
+
+  @Getter
+  @Builder
+  public static class PhysicalConversion {
+    // ball related offsets (in meters!)
+    // positive x is towards FRONT of the robot
+    // positive y is towards PORT/LEFT side
+    @Builder.Default private Translation3d TURRET_OFFSET = new Translation3d();
+    @Builder.Default private Distance RADIUS_TO_BALL = Inches.of(0.0);
+  }
+
+  // AIMING thresholds (once below, will transition to SHOOTING)
+  @Getter
+  @Builder
+  public static class Threshold {
+    @Builder.Default private AngularVelocity HUB_FLYWHEEL_THRESHOLD = RotationsPerSecond.of(1.0);
+    @Builder.Default private Angle HUB_TURRET_THRESHOLD = Degrees.of(2.5);
+    @Builder.Default private Angle HUB_HOOD_THRESHOLD = Degrees.of(10.0);
+
+    @Builder.Default
+    private AngularVelocity SHUTTLE_FLYWHEEL_THRESHOLD = RotationsPerSecond.of(5.0);
+
+    @Builder.Default private Angle SHUTTLE_TURRET_THRESHOLD = Degrees.of(10.0);
+    @Builder.Default private Angle SHUTTLE_HOOD_THRESHOLD = Degrees.of(100.0);
+  }
+}
