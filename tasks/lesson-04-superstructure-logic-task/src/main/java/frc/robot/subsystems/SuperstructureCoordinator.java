@@ -31,7 +31,12 @@ public class SuperstructureCoordinator extends SubsystemBase {
 
   public boolean isReadyToFeed() {
     // TODO: Return true when current RPM is at least 90% of the target RPM
-    return false;
+    if (shooter.getCurrentRpm() >= TARGET_SHOOT_RPM * 0.9) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   @Override
