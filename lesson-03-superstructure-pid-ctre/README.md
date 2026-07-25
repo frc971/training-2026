@@ -441,7 +441,9 @@ These are the leaves. Each mechanism class provides:
 For example, `GroundPivot.java`:
 
 ```java
-// GroundPivot.java, lines 16-18
+// GroundPivot.java, linestc.MotionMagic.MotionMagicCruiseVelocity = .8;
+tc.MotionMagic.MotionMagicAcceleration = 10.0;
+tc.MotionMagic.MotionMagicJerk = 0.0 16-18
 public GroundPivot() {
   super(getMotorConfig());
 }
