@@ -42,9 +42,18 @@ public class Superstructure {
 
   private void updateKeybinds() {
     pathingToggle.periodic();
-
+    
+  
     // TODO: Use pathingToggle.toggled() to set the Pathing goal.
+    if (pathingToggle.toggled()){
+      setGoal(Goal.ACTIVE);
+    }else{
+      setGoal(Goal.NOT_ACTIVE);
+
+    }
+  }
+
     // When the toggle is true, the goal should be ACTIVE.
     // When the toggle is false, the goal should be NOT_ACTIVE.
-  }
 }
+
