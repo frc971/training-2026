@@ -51,15 +51,16 @@ public class Pathing {
           arm.setPosition(SCORE_ARM_DEGREES);
           
           
-          
+           
       if (isArmReadyForEndEffector()) {
-        elevator.setHeight(ARM_TOLERANCE_DEGREES);(SCORE_ELEVATOR_METERS);
+        elevator.setHeight(SCORE_ELEVATOR_METERS);
         
           } else {
             elevator.stop();
           }
       
         }
+      
     
     
     
@@ -89,7 +90,7 @@ public class Pathing {
   public boolean isReadyToScore() {
     // TODO: Return true when the arm, end effector, and elevator have all reached their targets.
     // Use ELEVATOR_TOLERANCE_METERS for the elevator check.
-    if (arm.getCurrentDegrees() = arm.getTargetDegrees() && endEffector.getAppliedVolts() == endEffector.getTargetVolts() && Math.abs(elevator.getCurrentHeight() - SCORE_ELEVATOR_METERS) <= ELEVATOR_TOLERANCE_METERS) {
+    if (arm.getCurrentDegrees() == arm.getTargetDegrees() && endEffector.getAppliedVolts() == endEffector.getTargetVolts() && Math.abs(elevator.getCurrentMeters() - SCORE_ELEVATOR_METERS) <= ELEVATOR_TOLERANCE_METERS) {
       return true;
     } else {
     return false;
