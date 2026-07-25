@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import java.util.logging.Logger;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -33,6 +35,8 @@ public class Pivot extends SubsystemBase {
     SmartDashboard.putNumber("current angle", currentAngleDegrees);
     SmartDashboard.putNumber("target angle", targetAngleDegrees);
     SmartDashboard.putBoolean("atTarget()", atTarget());
+
+
   }
 
   @Override
