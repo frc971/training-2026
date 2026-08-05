@@ -2,6 +2,9 @@ package frc.robot.subsystems;
 
 import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.wpilog.WPILOGWriter.AdvantageScopeOpenBehavior;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Pathing {
   public enum Goal {
@@ -40,6 +43,19 @@ public class Pathing {
   public void periodic() {
     // TODO: Write this periodic method.
     // If the goal is NOT_ACTIVE, stop all three mechanisms and return.
+    if (goal == Goal.NOT_ACTIVE) {
+      stopAll();
+      return;
+    }
+    else if (goal == Goal.ACTIVE) {
+      arm.setPosition(SCORE_ARM_DEGREES);
+      if (isArmReadyForEndEffector()) {
+        endEffector.setVoltage(SCORE_END_EFFECTOR_VOLTS);
+      }
+      if (isEndEffectorReadyForElevator()) {
+        elevator.setHeight(SCORE_ELEVATOR_METERS);
+      }
+    }
     // If the goal is ACTIVE:
     // 1. Move the arm to SCORE_ARM_DEGREES.
     // 2. Only run the end effector at SCORE_END_EFFECTOR_VOLTS after the arm is ready.
@@ -50,18 +66,27 @@ public class Pathing {
 
   public boolean isArmReadyForEndEffector() {
     // TODO: Return true when the arm is within ARM_TOLERANCE_DEGREES of SCORE_ARM_DEGREES.
+    if (arm.getCurrentDegrees() < (SCORE_ARM_DEGREES + ARM_TOLERANCE_DEGREES) || arm.getCurrentDegrees() > (SCORE_ARM_DEGREES - ARM_TOLERANCE_DEGREES)) {
+      return true;
+    }
     return false;
   }
 
   public boolean isEndEffectorReadyForElevator() {
     // TODO: Return true only after the arm is ready and the end effector is within
     // END_EFFECTOR_TOLERANCE_VOLTS of SCORE_END_EFFECTOR_VOLTS.
+    if ((endEffector.getAppliedVolts() > (SCORE_END_EFFECTOR_VOLTS - END_EFFECTOR_TOLERANCE_VOLTS) || endEffector.getAppliedVolts() < (SCORE_END_EFFECTOR_VOLTS + END_EFFECTOR_TOLERANCE_VOLTS)) && isArmReadyForEndEffector()) {
+      return true;
+    }
     return false;
   }
 
   public boolean isReadyToScore() {
     // TODO: Return true when the arm, end effector, and elevator have all reached their targets.
     // Use ELEVATOR_TOLERANCE_METERS for the elevator check.
+    if (arm.getCurrentDegrees()==arm.getTargetDegrees() && endEffector.getAppliedVolts() == endEffector.getTargetVolts() && elevator.getCurrentMeters() == ELEVATOR_TOLERANCE_METERS) {
+      return true;
+    }
     return false;
   }
 
@@ -73,5 +98,6 @@ public class Pathing {
 
   private void logState() {
     // Log goal, arm ready for ee, arm ready for elevator, and ready to score here 
+    
   }
 }

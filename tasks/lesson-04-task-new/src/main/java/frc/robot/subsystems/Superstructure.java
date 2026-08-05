@@ -46,5 +46,11 @@ public class Superstructure {
     // TODO: Use pathingToggle.toggled() to set the Pathing goal.
     // When the toggle is true, the goal should be ACTIVE.
     // When the toggle is false, the goal should be NOT_ACTIVE.
+    if (pathingToggle.toggled()){
+      pathing.setGoal(Goal.ACTIVE);
+    }
+    else {
+      pathing.setGoal(Goal.NOT_ACTIVE);
+    }
   }
 }
