@@ -45,7 +45,7 @@ public class FlywheelLeft extends AngularSubsystem {
 
     tc.Slot0.GravityType = GravityTypeValue.Elevator_Static;
 
-    tc.MotionMagic.MotionMagicCruiseVelocity = 0.0; // TODO: make this reasonable
+    tc.MotionMagic.MotionMagicCruiseVelocity = 2.0; // TODO: make this reasonable
     tc.MotionMagic.MotionMagicAcceleration = 0.0;
     tc.MotionMagic.MotionMagicJerk = 0.0;
 

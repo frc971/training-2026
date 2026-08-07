@@ -116,6 +116,7 @@ public class Robot extends LoggedRobot {
       robotContainer.getTelemetry().setAutoStartPose(startPose);
     }
     // TODO: Log the autonomous starting pose
+    Logger.recordOutput("Auto/StartingPose", startPose);
   }
 
   @Override
