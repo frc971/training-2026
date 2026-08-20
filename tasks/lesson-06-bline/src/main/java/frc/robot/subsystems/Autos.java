@@ -204,8 +204,7 @@ public class Autos {
               "SuperSteal Depot",
               List.of("S_SuperSteal", "H_Normal", "F_SuperSteal", "D_Normal")),
           new AutoRoutine(
-              true, "SuperSteal", List.of("S_SuperSteal", "H_Normal", "F_SuperSteal", "H_Normal")),
-
+              false, "StephenAuto", List.of("StephenAuto")),
           // Middle Depot
           new AutoRoutine(false, "BUM", List.of("MiddleDepot2")));
 }
