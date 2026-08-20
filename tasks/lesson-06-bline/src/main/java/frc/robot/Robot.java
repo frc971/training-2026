@@ -111,12 +111,12 @@ public class Robot extends LoggedRobot {
           && DriverStation.getAlliance().get() == DriverStation.Alliance.Red) {
         startPose = FlippingUtil.flipFieldPose(startPose);
       }
-
       // Update the field visualization with the auto start pose
       robotContainer.getTelemetry().setAutoStartPose(startPose);
+      Logger.recordOutput("Auto/StartingPose", startPose);
     }
     // TODO: Log the autonomous starting pose
-    Logger.recordOutput("Auto/StartingPose", startPose);
+
   }
 
   @Override
