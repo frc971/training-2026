@@ -23,8 +23,8 @@ public class RobotContainer {
   private void configureBindings() {
     // TODO: Bind button 1 to pivot.setTargetAngleDegrees(35.0)
     // TODO: Bind button 2 to pivot.setTargetAngleDegrees(0.0)
-    joystick.button(1).onTrue(pivot.runOnce(() -> ));
-    joystick.button(2).onTrue(pivot.runOnce(() -> ));
+    joystick.button(1).onTrue(pivot.runOnce(() -> pivot.setTargetAngleDegrees(35.0)));
+    joystick.button(2).onTrue(pivot.runOnce(() -> pivot.setTargetAngleDegrees(0.0)));
   }
 
   public Command getAutonomousCommand() {
