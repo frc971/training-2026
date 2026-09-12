@@ -11,6 +11,52 @@
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+class Elevator {
+  private int floor;
+  public Elevator(int floor) {
+    this.floor = floor;
+  }
+  public void moveUp() {
+    floor++;
+  }
+  public void moveDown() {
+    floor--;
+  }
+  public int getCurrentFloor() {
+    return floor;
+  }
+}
+class ElevatorController {
+  private Elevator e;
+  private int min, max;
+  public ElevatorController (Elevator e, int min, int max) {
+    this.e = e;
+    this.min = min;
+    this.max = max;
+    instantiate();
+  }
+  public void instantiate() {
+    System.out.println("Elevator instantiated at floor " + e.getCurrentFloor());
+  }
+  public void goToFloor(int floor) {
+    if (floor > max || floor < min) {
+      System.out.println("Floor " + floor + " is not a valid floor");
+      return;
+    } else if (floor > e.getCurrentFloor()) {
+      for (int i = e.getCurrentFloor(); i < floor; i++) {
+        e.moveUp();
+        System.out.print("Moving up... now at floor " + e.getCurrentFloor() + "\n");
+      }
+    } else if (floor < e.getCurrentFloor()) {
+      for (int i = e.getCurrentFloor(); i > floor; i--) {
+        e.moveDown();
+        System.out.print("Moving down... now at floor " + e.getCurrentFloor() + "\n");
+      }
+    }
+    System.out.print("Arrived at floor " + e.getCurrentFloor() + "\n");
+  }
+}
+
 public class EvaluationTest {
   // ANSI escape codes for colored output
   public static final String ANSI_GREEN = "\u001B[32m";
