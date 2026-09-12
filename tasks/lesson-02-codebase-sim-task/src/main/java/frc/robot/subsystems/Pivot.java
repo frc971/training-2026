@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Pivot extends SubsystemBase {
   private static final double STEP_DEGREES_PER_CYCLE = 2.0;
@@ -29,6 +30,9 @@ public class Pivot extends SubsystemBase {
   @Override
   public void periodic() {
     // TODO: Publish current angle, target angle, and atTarget() to SmartDashboard
+    SmartDashboard.putNumber("PIVOT CURRENT ANGLE", currentAngleDegrees);
+    SmartDashboard.putNumber("PIVOT TARGET ANGLE", targetAngleDegrees);
+    SmartDashboard.putBoolean("AT TARGET?", atTarget());
   }
 
   @Override
