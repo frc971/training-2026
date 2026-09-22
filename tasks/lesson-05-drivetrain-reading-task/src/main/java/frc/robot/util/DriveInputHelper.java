@@ -23,16 +23,36 @@ public class DriveInputHelper {
 
     // TODO: Apply normal vs slow-mode scaling to x, y, and rot
 
+     if (slowMode) {
+      x *= SLOW_TRANSLATION_SCALE;
+      y *= SLOW_TRANSLATION_SCALE;
+      rot *= SLOW_ROTATION_SCALE;
+    } else { 
+      x *= NORMAL_TRANSLATION_SCALE;
+      y *= NORMAL_TRANSLATION_SCALE;
+      rot *= NORMAL_ROTATION_SCALE;
+    }
+
     return new DriveRequest(x, y, rot);
   }
 
   private double applyDeadband(double value, double deadband) {
     // TODO: Return 0.0 inside the deadband and scale values outside the deadband
+
+     if (Math.abs(value) < deadband) {
+      return 0.0;
+  } else if (value < 0) {
+      value = (value - deadband) / (1 - deadband);
+    } else {
+      value = (value + deadband) / (1 - deadband);
+    }
     return value;
   }
 
   private double applyExponent(double value, double exponent) {
     // TODO: Keep the sign, but curve the magnitude using the given exponent
+    double magnitude = Math.pow(Math.abs(value),exponent);
+    value = Math.copySign(magnitude, value);
     return value;
   }
 }
